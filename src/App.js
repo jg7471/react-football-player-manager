@@ -1,14 +1,18 @@
+import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
-// import NavBar from './components/NavBar/NavBar';
+import ManagePlayer from './components/makeplayer/MakePlayer';
 import Main from './components/mainpage/MainPage';
+// import NavigationBar from './components/navigationbar/NavigationBar';
 
 function App() {
   return (
     <>
-      <Header />;{/* <NavBar />; */}
+      <Header />
+      {/* <NavigationBar /> */}
       <div id="main">
-        <Main />;
+        <ManagePlayer />
+        <Main />
       </div>
     </>
   );
