@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import styles from './MakePlayer.module.scss';
 
-const Stat = () => {
+const MakePlayer = ({ onSave }) => {
   // 각 능력치의 초기 상태를 설정합니다.
+
+  const { header } = styles;
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -14,119 +16,126 @@ const Stat = () => {
   const [finishing, setFinishing] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
 
-  // 능력치를 저장하는 함수
-  const saveStats = () => {
-    // 여기서는 예시로 각 능력치를 콘솔에 출력합니다.
-    console.log('Name:', name);
-    console.log('Surname:', surname);
-    console.log('Acceleration:', acceleration);
-    console.log('Sprint Speed:', sprintSpeed);
-    console.log('Positioning:', positioning);
-    console.log('Finishing:', finishing);
-    console.log('Selected Option:', selectedOption);
-  };
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
 
+    // 사용자가 입력한 데이터 수집
+    const playerData = {
+      name,
+      surname,
+      acceleration,
+      sprintSpeed,
+      positioning,
+      finishing,
+      position: selectedOption,
+    };
+
+    // 데이터를 저장하는 함수 호출
+    onSave(playerData);
+    localStorage.setItem('playerData', JSON.stringify([]));
+  };
   return (
     <div>
-      <h2>선수 능력치 관리</h2>
-      <Table striped bordered hover variant="dark">
-        <thead>
-          <tr>
-            <th>능력치</th>
-            <th>값 입력</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>
-              <Form.Control
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Surname</td>
-            <td>
-              <Form.Control
-                type="text"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-              />
-            </td>
-          </tr>
-
-          <tr id="Position">
-            {' '}
-            {/* id는 tr 태그에 설정하는 것이 아니라 Form.Select에 설정해야 합니다. */}
-            <td>Position</td>
-            <td>
-              <Form.Select
-                aria-label="Default select example"
-                value={selectedOption} // 선택된 옵션을 설정
-                onChange={(e) => setSelectedOption(e.target.value)} // 옵션이 변경될 때마다 선택된 옵션을 업데이트
-              >
-                <option>Select your Position</option>
-                <option value="1">FW</option>
-                <option value="2">MF</option>
-                <option value="3">DF</option>
-                <option value="4">GK</option>
-              </Form.Select>
-            </td>
-          </tr>
-          {selectedOption === '1' && (
-            <>
-              <tr>
-                <td>ACCELERATION</td>
-                <td>
-                  <Form.Control
-                    type="text"
-                    value={acceleration}
-                    onChange={(e) => setAcceleration(e.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>SPRINT SPEED</td>
-                <td>
-                  <Form.Control
-                    type="text"
-                    value={sprintSpeed}
-                    onChange={(e) => setSprintSpeed(e.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>POSITIONING</td>
-                <td>
-                  <Form.Control
-                    type="text"
-                    value={positioning}
-                    onChange={(e) => setPositioning(e.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>FINISHING</td>
-                <td>
-                  <Form.Control
-                    type="text"
-                    value={finishing}
-                    onChange={(e) => setFinishing(e.target.value)}
-                  />
-                </td>
-              </tr>
-            </>
-          )}
-        </tbody>
-      </Table>
-      <Button variant="primary" onClick={saveStats}>
+      <h2 className={header}>선수_능력치_관리</h2>
+      <div className="table-container">
+        <div className="table-row">
+          <div className="table-header">능력치</div>
+          <div className="table-header">값_입력</div>
+        </div>
+        <div className="table-row">
+          <div className="table-cell">Name</div>
+          <div className="table-cell">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="table-row">
+          <div className="table-cell">Surname</div>
+          <div className="table-cell">
+            <input
+              type="text"
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+            />
+          </div>
+        </div>
+        <div id="Position" className="table-row">
+          <div className="table-cell">Position</div>
+          <div className="table-cell">
+            <select
+              aria-label="Default select example"
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option>Select your Position</option>
+              <option value="1">FW</option>
+              <option value="2">MF</option>
+              <option value="3">DF</option>
+              <option value="4">GK</option>
+            </select>
+          </div>
+        </div>
+        {selectedOption === '1' && (
+          <>
+            <div className="table-row">
+              <div className="table-cell">ACCELERATION</div>
+              <div className="table-cell">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={acceleration}
+                  onChange={(e) => setAcceleration(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">SPRINT_SPEED</div>
+              <div className="table-cell">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={sprintSpeed}
+                  onChange={(e) => setSprintSpeed(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">POSITIONING</div>
+              <div className="table-cell">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={positioning}
+                  onChange={(e) => setPositioning(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">FINISHING</div>
+              <div className="table-cell">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={finishing}
+                  onChange={(e) => setFinishing(e.target.value)}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      <Button variant="primary" onClick={formSubmitHandler}>
         저장
       </Button>
     </div>
   );
 };
 
-export default Stat;
+export default MakePlayer;
