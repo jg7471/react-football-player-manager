@@ -6,17 +6,21 @@
 
 .table-container {
   width: 90%;
+  color: yellow;
 }
 
 .table-row {
   display: flex;
+  color: yellow;
 }
 
 .table-cell {
   flex-basis: 50%; 
+  color: yellow;
 }
 
 .table-cell input {
   width: 100%;
+  color: yellow;
 }
 

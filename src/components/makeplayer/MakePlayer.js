@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from './MakePlayer.module.scss';
 
-const MakePlayer = ({ onSave }) => {
-  // 각 능력치의 초기 상태를 설정합니다.
+const {
+  header,
+  'table-container': tableContainer,
+  'table-row': tableRow,
+  'table-cell': tableCell,
+  input,
+} = styles;
 
-  const { header } = styles;
+const MakePlayer = ({ onAdd }) => {
+  console.log('onSave: ', onAdd);
+  // 각 능력치의 초기 상태를 설정합니다.
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -31,8 +37,8 @@ const MakePlayer = ({ onSave }) => {
     };
 
     // 데이터를 저장하는 함수 호출
-    onSave(playerData);
-    localStorage.setItem('playerData', JSON.stringify([]));
+    onAdd(playerData);
+    // localStorage.setItem('playerData', JSON.stringify([])); //이미 Form에서 저장함 -> 호출만 해주면 됨 a1
   };
   return (
     <div>

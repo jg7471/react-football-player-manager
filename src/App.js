@@ -1,18 +1,17 @@
 import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
-import Stat from './components/makeplayer/Stat';
-import ManagePlayer from './components/makeplayer/MakePlayer';
 import Main from './components/mainpage/MainPage';
+import Form from './components/makeplayer/Form';
 // import NavigationBar from './components/navigationbar/NavigationBar';
 
 function App() {
   return (
     <>
       <Header />
-      {/* <NavigationBar /> */}
       <div id="main">
-        <ManagePlayer />
+        <Form />
+        {/* Form 안에 -> MakePlayer 있음 */}
         <Main />
       </div>
     </>
