@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Form from './Form';
 
 const ShowPlayer = ({ Form }) => {
   const [localStorage, setlocalStorage] = useState(null);
