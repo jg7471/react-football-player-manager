@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/header/Header';
 import MainPage from './components/mainpage/MainPage';
 import Form from './components/makeplayer/Form';
+
 // import NavigationBar from './components/navigationbar/NavigationBar';
 
 function App() {
