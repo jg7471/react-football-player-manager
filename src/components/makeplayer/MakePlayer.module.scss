@@ -4,22 +4,22 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-.table-container {
+.groupbox {
   width: 90%;
   color: yellow;
 }
 
-.table-row {
+.linebox {
   display: flex;
   color: yellow;
 }
 
-.table-cell {
+.stat {
   flex-basis: 50%; 
   color: yellow;
 }
 
-.table-cell input {
+.input {
   width: 100%;
   color: yellow;
 }

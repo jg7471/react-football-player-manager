@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import styles from './MakePlayer.module.scss';
+import PlayerContext from '../config/PlayerContext';
 
 const MakePlayer = ({ onAdd, playerData }) => {
   console.log('onSave: ', onAdd);
@@ -13,6 +14,8 @@ const MakePlayer = ({ onAdd, playerData }) => {
   const [positioning, setPositioning] = useState('');
   const [finishing, setFinishing] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
+
+  const { onAddData } = useContext(PlayerContext); //Provider 호출
 
   const makePlayerDB = (e) => {
     e.preventDefault();
@@ -28,6 +31,8 @@ const MakePlayer = ({ onAdd, playerData }) => {
       position: selectedOption,
     };
 
+    onAddData(playerData); //Provider 이용하여 저장
+
     // 데이터를 저장하는 함수 호출
     onAdd({ playerData });
     // localStorage.setItem('playerData', JSON.stringify([])); //이미 Form에서 저장함 -> 호출만 해주면 됨 a1
@@ -36,14 +41,14 @@ const MakePlayer = ({ onAdd, playerData }) => {
   return (
     <>
       <h2>선수_능력치_관리</h2>
-      <div className="table-container">
-        <div className="table-row">
-          <div className="table-header">능력치</div>
-          <div className="table-header">값_입력</div>
+      <div className="groupbox">
+        <div className="linebox">
+          <div className="header">능력치</div>
+          <div className="header">값_입력</div>
         </div>
         <div className="table-row">
-          <div className="table-cell">Name</div>
-          <div className="table-cell">
+          <div className="stat">Name</div>
+          <div className="stat">
             <input
               type="text"
               value={name}
@@ -52,8 +57,8 @@ const MakePlayer = ({ onAdd, playerData }) => {
           </div>
         </div>
         <div className="table-row">
-          <div className="table-cell">Surname</div>
-          <div className="table-cell">
+          <div className="stat">Surname</div>
+          <div className="stat">
             <input
               type="text"
               value={surname}
@@ -62,8 +67,8 @@ const MakePlayer = ({ onAdd, playerData }) => {
           </div>
         </div>
         <div id="Position" className="table-row">
-          <div className="table-cell">Position</div>
-          <div className="table-cell">
+          <div className="stat">Position</div>
+          <div className="stat">
             <select
               aria-label="Default select example"
               value={selectedOption}
@@ -79,9 +84,9 @@ const MakePlayer = ({ onAdd, playerData }) => {
         </div>
         {selectedOption === '1' && (
           <>
-            <div className="table-row">
-              <div className="table-cell">ACCELERATION</div>
-              <div className="table-cell">
+            <div className="linebox">
+              <div className="stat">ACCELERATION</div>
+              <div className="stat">
                 <input
                   type="number"
                   min="1"
@@ -91,9 +96,9 @@ const MakePlayer = ({ onAdd, playerData }) => {
                 />
               </div>
             </div>
-            <div className="table-row">
-              <div className="table-cell">SPRINT_SPEED</div>
-              <div className="table-cell">
+            <div className="linebox">
+              <div className="stat">SPRINT_SPEED</div>
+              <div className="stat">
                 <input
                   type="number"
                   min="1"
@@ -103,9 +108,9 @@ const MakePlayer = ({ onAdd, playerData }) => {
                 />
               </div>
             </div>
-            <div className="table-row">
-              <div className="table-cell">POSITIONING</div>
-              <div className="table-cell">
+            <div className="linebox">
+              <div className="stat">POSITIONING</div>
+              <div className="stat">
                 <input
                   type="number"
                   min="1"
@@ -115,9 +120,9 @@ const MakePlayer = ({ onAdd, playerData }) => {
                 />
               </div>
             </div>
-            <div className="table-row">
-              <div className="table-cell">FINISHING</div>
-              <div className="table-cell">
+            <div className="linebox">
+              <div className="stat">FINISHING</div>
+              <div className="stat">
                 <input
                   type="number"
                   min="1"

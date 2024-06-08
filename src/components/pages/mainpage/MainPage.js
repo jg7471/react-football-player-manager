@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import backImg from '../../assets/backImg.jpg';
+import backImg from '../../../assets/backImg.jpg';
 import styles from './MainPage.module.scss';
 import MakePlayer from '../../makeplayer/MakePlayer';
 
