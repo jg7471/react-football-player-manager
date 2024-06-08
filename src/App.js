@@ -1,22 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import Header from './components/header/Header';
-import MainPage from './components/mainpage/MainPage';
-import Form from './components/makeplayer/Form';
+import MainPage from './components/pages/mainpage/MainPage';
+import Squad from './components/pages/squad/Squad';
 
-// import NavigationBar from './components/navigationbar/NavigationBar';
-
-function App() {
+export default function App() {
   return (
-    <>
-      <Header />
-      <div id="main">
-        <Form />
-        {/* Form 안에 -> MakePlayer 있음 */}
-        <MainPage />
-      </div>
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/MainPage" element={<MainPage />} />
+        <Route path="/Squad" element={<Squad />} />
+      </Routes>
+    </div>
   );
 }
-
-export default App;
